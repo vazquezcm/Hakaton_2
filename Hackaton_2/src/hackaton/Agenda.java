@@ -1,5 +1,6 @@
 package hackaton;
 import java.util.ArrayList;
+import java.util.Scanner;
 public class Agenda {
    private Contacto[] contactos;
    private int capacidad;
@@ -68,6 +69,17 @@ public class Agenda {
         }
     }
 
+    public boolean agendaVacia(){
+        boolean banderaAgenda = false;
+        if (cantidadActual==0){
+            banderaAgenda = true;
+            return banderaAgenda;
+        } else {
+            return banderaAgenda;
+        }
+    }
+
+
     public void buscarContacto(String nombre, String apellido) {
         for (Contacto contacto : contactos) {
             if (contacto != null) {
@@ -95,6 +107,23 @@ public class Agenda {
 
         }
         System.out.println("No se encontro contacto");
+    }
+
+    public void modificarTelefono(String nombre, String apellido){
+        Scanner scan = new Scanner(System.in);
+        String telefonoNew;
+        for (Contacto contacto : contactos) {
+            if (contacto != null) {
+                if (contacto.getNombre().equalsIgnoreCase(nombre)
+                        && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                    System.out.println("Va a cambiar el telefono del siguiente contacto = " + contacto.getNombre() + " "+contacto.getApellido());
+                    System.out.println("¿Cuál va a ser su nuevo número telefónico?");
+                    telefonoNew = scan.nextLine();
+                    contacto.setTelefono(telefonoNew);
+                    return;
+                }
+            }
+        }
     }
 
 }

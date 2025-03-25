@@ -7,7 +7,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
         Agenda a = null;
 
-            System.out.println("Bienvenido al sistema de Agendas! de cuántos contactos quiere su agenda? Presione 0 para tamaño por defecto [10]");
+            System.out.println("Bienvenido al sistema de Agendas! \n¿De cuántos contactos quiere su agenda? Presione 0 para tamaño por defecto [10]");
             int tamaño = scan.nextInt();
             scan.nextLine();
             if (tamaño == 0) {
@@ -17,7 +17,7 @@ public class Main {
             }
             int opc;
         do {
-        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 3.-Buscar contacto 4.- Eliminar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
+        System.out.println("¿Qué desea hacer? \n1.-Añadir contacto \n2.-Listar contacto \n3.-Buscar contacto \n4.-Eliminar contacto \n5.-Verificar agenda llena \n6.-Espacios libres \n7- Editar numero de telefono \n0.-Salir");
          opc = scan.nextInt();
             scan.nextLine();
         switch(opc) {
@@ -55,7 +55,11 @@ public class Main {
 
                 break;
             case 2:
-                a.mostrarContactos();
+                if (a.agendaVacia()){
+                    System.out.println("Agenda Vacia!!!");
+                }else {
+                    a.mostrarContactos();
+                }
                 break;
 
             case 3:
@@ -84,6 +88,16 @@ public class Main {
             case 6:
                 int espD = (a.getCapacidad()-a.getCantidadActual());
                 System.out.println("Cuenta con "+ espD +" Espacios disponibles");
+                break;
+            case 7:
+                System.out.println("Lista de contactos: ");
+                a.mostrarContactos();
+                System.out.println("Cuál teléfono desea modificar? ");
+                System.out.println("Ingrese el nombre:");
+                String nombreBuscart = scan.nextLine();
+                System.out.println("Ingrese el apellido:");
+                String apellidoBuscart = scan.nextLine();
+                a.modificarTelefono(nombreBuscart, apellidoBuscart);
                 break;
             default:
                 System.out.println("Se ha finalizado el programa!");
