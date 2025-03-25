@@ -17,7 +17,7 @@ public class Main {
             }
             int opc;
         do {
-        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
+        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 4.- Eliminar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
          opc = scan.nextInt();
             scan.nextLine();
         switch(opc) {
@@ -40,11 +40,14 @@ public class Main {
                 a.mostrarContactos();
                 break;
             case 3:
-                System.out.println("i es dos.");
+
                 break;
             case 4:
-                System.out.println("i es tres.");
-                break;
+                System.out.println("Ingrese el nombre del contacto a eliminar: ");
+                String nombreEliminar = scan.nextLine();
+                System.out.println("Ingrese el apellido del contacto a eliminar: ");
+                String apellidoEliminar = scan.nextLine();
+                a.eliminarContacto(nombreEliminar, apellidoEliminar);
             case 5:
                 if(a.agendaLena()){
                     System.out.println("Agenda llena!");
