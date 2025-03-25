@@ -17,7 +17,7 @@ public class Main {
             }
             int opc;
         do {
-        System.out.println("¿Qué desea hacer? \n1.-Añadir contacto \n2.-Listar contacto \n3.-Buscar contacto \n4.-Eliminar contacto \n5.-Verificar agenda llena \n6.-Espacios libres \n7- Editar numero de telefono \n0.-Salir");
+        System.out.println("¿Qué desea hacer? \n1.-Añadir contacto \n2.-Listar contacto \n3.-Buscar contacto \n4.-Eliminar contacto \n5.-Verificar agenda llena \n6.-Espacios libres \n7- Editar numero de telefono \n 8- Validar que un usuario coincida con la Agenda \n0.-Salir");
          opc = scan.nextInt();
             scan.nextLine();
         switch(opc) {
