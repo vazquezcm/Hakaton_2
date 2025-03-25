@@ -80,17 +80,19 @@ public class Agenda {
     }
 
 
-    public void buscarContacto(String nombre, String apellido) {
+    public void buscarContactoCompleto(String nombre, String apellido, String telefono) {
         for (Contacto contacto : contactos) {
             if (contacto != null) {
+                // Check if all three variables match (case-insensitive)
                 if (contacto.getNombre().equalsIgnoreCase(nombre)
-                        && contacto.getApellido().equalsIgnoreCase(apellido)) {
-                    System.out.println("Contacto encontrado. Teléfono: " + contacto.getTelefono());
+                        && contacto.getApellido().equalsIgnoreCase(apellido)
+                        && contacto.getTelefono().equalsIgnoreCase(telefono)) {
+                    System.out.println("Contacto encontrado: " + contacto);
                     return;
                 }
             }
         }
-        System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
+        System.out.println("Contacto '" + nombre + " " + apellido + " " + telefono + "' no encontrado.");
     }
 
     public void eliminarContacto(String nombre, String apellido) {
