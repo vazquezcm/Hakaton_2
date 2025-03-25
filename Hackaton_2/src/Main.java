@@ -17,7 +17,7 @@ public class Main {
             }
             int opc;
         do {
-        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 3.-Buscar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
+        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 3.-Buscar contacto 4.-Eliminar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
          opc = scan.nextInt();
             scan.nextLine();
         switch(opc) {
@@ -49,7 +49,8 @@ public class Main {
                 break;
 
             case 4:
-                System.out.println("i es tres.");
+                System.out.println("Eliminar contacto");
+                a.eliminarContacto();
                 break;
             case 5:
                 if(a.agendaLena()){

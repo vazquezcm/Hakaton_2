@@ -1,5 +1,7 @@
 package hackaton;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Agenda {
    private Contacto[] contactos;
    private int capacidad;
@@ -80,6 +82,24 @@ public class Agenda {
         }
         System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
     }
+
+
+    public void eliminarContacto() {
+
+        System.out.println("\n- LISTA DE CONTACTOS -");
+        int contador = 1;
+        for (Contacto contacto : contactos) {
+            if (contacto != null) {
+                System.out.println(contador++ + ". " + contacto);
+            }
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nIngrese el número del contacto a eliminar: ");
+        int opcion = scanner.nextInt();
+
+    }
+
 
 
 }
