@@ -17,14 +17,16 @@ public class Main {
             }
             int opc;
         do {
-        System.out.println("¿Qué desea hacer? \n1.-Añadir contacto \n2.-Listar contacto \n3.-Buscar contacto \n4.-Eliminar contacto \n5.-Verificar agenda llena \n6.-Espacios libres \n7- Editar numero de telefono \n 8- Validar que un usuario coincida con la Agenda \n0.-Salir");
+        System.out.println("¿Qué desea hacer? \n1.-Añadir contacto \n2.-Listar contacto \n3.-Buscar contacto \n4.-Eliminar contacto \n5.-Verificar agenda llena \n6.-Espacios libres \n7.-Editar numero de telefono \n8.-Validar que un usuario coincida con la Agenda \n0.-Salir");
          opc = scan.nextInt();
             scan.nextLine();
         switch(opc) {
             case 1:
+
                 String nombre;
                 String apellido;
                 String telefono;
+
                 do {
                     System.out.println("Qué nombre tiene el contacto? ");
                     nombre = scan.nextLine();
@@ -39,6 +41,10 @@ public class Main {
                         System.out.println("El apellido no debe contener espacios. Inténtalo de nuevo.");
                     }
                 }while(apellido.contains(" "));
+                if (a.validarDuplicado(nombre,apellido)){
+                    //System.out.println("Usuario Duplicado! intente de nuevo");
+                    break;
+                }
                 do {
                     System.out.println("Qué número de teléfono tiene el contacto? ");
                     telefono = scan.nextLine();
@@ -46,11 +52,13 @@ public class Main {
                         System.out.println("El telefono no debe contener espacios. Inténtalo de nuevo.");
                     }
                 }while(telefono.contains(" "));
-                Contacto nuevoContacto = new Contacto(nombre,apellido,telefono);
+
                 if(a.agendaLena()){
                     System.out.println("Agenda llena!!!!");
                     break;
                 }
+
+                Contacto nuevoContacto = new Contacto(nombre,apellido,telefono);
                 a.agregarContacto(nuevoContacto);
 
                 break;

@@ -89,6 +89,24 @@ public class Agenda {
         System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
     }
 
+    public boolean validarDuplicado(String nombre, String apellido) {
+        boolean duplicado = false;
+        for (Contacto contacto : contactos) {
+            if (contacto != null) {
+                // Check if all three variables match (case-insensitive)
+                if (contacto.getNombre().equalsIgnoreCase(nombre)
+                        && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                    System.out.println("Contacto duplicado! intente de nuevo. " + contacto);
+                    duplicado = true;
+                    return duplicado;
+                }
+            }
+        }
+        //System.out.println("Contacto '" + nombre + " " + apellido + " " + "' Agregado.");
+        return duplicado;
+    }
+
+
     public void buscarContactoCompleto(String nombre, String apellido, String telefono) {
         for (Contacto contacto : contactos) {
             if (contacto != null) {
