@@ -78,7 +78,16 @@ public class Agenda {
             return banderaAgenda;
         }
     }
+     public void buscarContacto(String nombre, String apellido) {
+        for(Contacto contacto : this.contactos) {
+            if (contacto != null && contacto.getNombre().equalsIgnoreCase(nombre) && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                System.out.println("Contacto encontrado. Teléfono: " + contacto.getTelefono());
+                return;
+            }
+        }
 
+        System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
+    }
 
     public void buscarContactoCompleto(String nombre, String apellido, String telefono) {
         for (Contacto contacto : contactos) {
