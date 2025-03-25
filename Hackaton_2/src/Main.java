@@ -17,7 +17,7 @@ public class Main {
             }
             int opc;
         do {
-        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
+        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 3.-Buscar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
          opc = scan.nextInt();
             scan.nextLine();
         switch(opc) {
@@ -39,9 +39,15 @@ public class Main {
             case 2:
                 a.mostrarContactos();
                 break;
+
             case 3:
-                System.out.println("i es dos.");
+                System.out.println("Ingrese el nombre:");
+                String nombreBuscar = scan.nextLine();
+                System.out.println("Ingrese el apellido:");
+                String apellidoBuscar = scan.nextLine();
+                a.buscarContacto(nombreBuscar, apellidoBuscar);
                 break;
+
             case 4:
                 System.out.println("i es tres.");
                 break;
