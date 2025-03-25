@@ -22,12 +22,30 @@ public class Main {
             scan.nextLine();
         switch(opc) {
             case 1:
-                System.out.println("Qué nombre tiene el contacto? ");
-                String nombre = scan.nextLine();
-                System.out.println("Qué apellido tiene el contacto? ");
-                String apellido = scan.nextLine();
-                System.out.println("Qué número de teléfono tiene el contacto? ");
-                String telefono = scan.nextLine();
+                String nombre;
+                String apellido;
+                String telefono;
+                do {
+                    System.out.println("Qué nombre tiene el contacto? ");
+                    nombre = scan.nextLine();
+                    if (nombre.contains(" ")){
+                        System.out.println("El nombre no debe contener espacios. Inténtalo de nuevo.");
+                    }
+                }while(nombre.contains(" "));
+                do {
+                    System.out.println("Qué apellido tiene el contacto? ");
+                    apellido = scan.nextLine();
+                    if (apellido.contains(" ")){
+                        System.out.println("El apellido no debe contener espacios. Inténtalo de nuevo.");
+                    }
+                }while(apellido.contains(" "));
+                do {
+                    System.out.println("Qué número de teléfono tiene el contacto? ");
+                    telefono = scan.nextLine();
+                    if (telefono.contains(" ")){
+                        System.out.println("El telefono no debe contener espacios. Inténtalo de nuevo.");
+                    }
+                }while(telefono.contains(" "));
                 Contacto nuevoContacto = new Contacto(nombre,apellido,telefono);
                 if(a.agendaLena()){
                     System.out.println("Agenda llena!!!!");
