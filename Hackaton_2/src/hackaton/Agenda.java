@@ -68,4 +68,18 @@ public class Agenda {
         }
     }
 
+    public void buscarContacto(String nombre, String apellido) {
+        for (Contacto contacto : contactos) {
+            if (contacto != null) {
+                if (contacto.getNombre().equalsIgnoreCase(nombre)
+                        && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                    System.out.println("Contacto encontrado. Teléfono: " + contacto.getTelefono());
+                    return;
+                }
+            }
+        }
+        System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
+    }
+
+
 }
