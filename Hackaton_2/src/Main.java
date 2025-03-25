@@ -99,6 +99,16 @@ public class Main {
                 String apellidoBuscart = scan.nextLine();
                 a.modificarTelefono(nombreBuscart, apellidoBuscart);
                 break;
+            case 8:
+                System.out.println("Ingrese el nombre:");
+                String nombreBuscarCompleto = scan.nextLine();
+                System.out.println("Ingrese el apellido:");
+                String apellidoBuscarCompleto = scan.nextLine();
+                System.out.println("Ingrese el teléfono:");
+                String telefonoBuscarCompleto = scan.nextLine();
+                a.buscarContactoCompleto(nombreBuscarCompleto, apellidoBuscarCompleto, telefonoBuscarCompleto);
+                break;
+                
             default:
                 System.out.println("Se ha finalizado el programa!");
         }
