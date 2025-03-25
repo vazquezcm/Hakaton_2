@@ -7,7 +7,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
         Agenda a = null;
 
-            System.out.println("Bienvenido al sistema de Agendas! de cuántos contactos quiere su agenda? Presione 0 para tamaño por defecto [10]");
+            System.out.println("Bienvenido al sistema de Agendas! \n¿De cuántos contactos quiere su agenda? Presione 0 para tamaño por defecto [10]");
             int tamaño = scan.nextInt();
             scan.nextLine();
             if (tamaño == 0) {
@@ -17,27 +17,57 @@ public class Main {
             }
             int opc;
         do {
-        System.out.println("Bienvenido al sistema! Qué desea hacer? 1.- Añadir contacto 2.-Listar contacto 3.-Buscar contacto 4.-Eliminar contacto 5.-Verificar agenda llena 6.-Espacios libres 0.-Salir");
+        System.out.println("¿Qué desea hacer? \n1.-Añadir contacto \n2.-Listar contacto \n3.-Buscar contacto \n4.-Eliminar contacto \n5.-Verificar agenda llena \n6.-Espacios libres \n7.-Editar numero de telefono \n8.-Validar que un usuario coincida con la Agenda \n0.-Salir");
          opc = scan.nextInt();
             scan.nextLine();
         switch(opc) {
             case 1:
-                System.out.println("Qué nombre tiene el contacto? ");
-                String nombre = scan.nextLine();
-                System.out.println("Qué apellido tiene el contacto? ");
-                String apellido = scan.nextLine();
-                System.out.println("Qué número de teléfono tiene el contacto? ");
-                String telefono = scan.nextLine();
-                Contacto nuevoContacto = new Contacto(nombre,apellido,telefono);
+
+                String nombre;
+                String apellido;
+                String telefono;
+
+                do {
+                    System.out.println("Qué nombre tiene el contacto? ");
+                    nombre = scan.nextLine();
+                    if (nombre.contains(" ")){
+                        System.out.println("El nombre no debe contener espacios. Inténtalo de nuevo.");
+                    }
+                }while(nombre.contains(" "));
+                do {
+                    System.out.println("Qué apellido tiene el contacto? ");
+                    apellido = scan.nextLine();
+                    if (apellido.contains(" ")){
+                        System.out.println("El apellido no debe contener espacios. Inténtalo de nuevo.");
+                    }
+                }while(apellido.contains(" "));
+                if (a.validarDuplicado(nombre,apellido)){
+                    //System.out.println("Usuario Duplicado! intente de nuevo");
+                    break;
+                }
+                do {
+                    System.out.println("Qué número de teléfono tiene el contacto? ");
+                    telefono = scan.nextLine();
+                    if (telefono.contains(" ")){
+                        System.out.println("El telefono no debe contener espacios. Inténtalo de nuevo.");
+                    }
+                }while(telefono.contains(" "));
+
                 if(a.agendaLena()){
                     System.out.println("Agenda llena!!!!");
                     break;
                 }
+
+                Contacto nuevoContacto = new Contacto(nombre,apellido,telefono);
                 a.agregarContacto(nuevoContacto);
 
                 break;
             case 2:
-                a.mostrarContactos();
+                if (a.agendaVacia()){
+                    System.out.println("Agenda Vacia!!!");
+                }else {
+                    a.mostrarContactos();
+                }
                 break;
 
             case 3:
@@ -49,8 +79,11 @@ public class Main {
                 break;
 
             case 4:
-                System.out.println("Eliminar contacto");
-                a.eliminarContacto();
+                System.out.println("Ingrese el nombre del contacto a eliminar: ");
+                String nombreEliminar = scan.nextLine();
+                System.out.println("Ingrese el apellido del contacto a eliminar: ");
+                String apellidoEliminar = scan.nextLine();
+                a.eliminarContacto(nombreEliminar, apellidoEliminar);
                 break;
             case 5:
                 if(a.agendaLena()){
@@ -64,6 +97,26 @@ public class Main {
                 int espD = (a.getCapacidad()-a.getCantidadActual());
                 System.out.println("Cuenta con "+ espD +" Espacios disponibles");
                 break;
+            case 7:
+                System.out.println("Lista de contactos: ");
+                a.mostrarContactos();
+                System.out.println("Cuál teléfono desea modificar? ");
+                System.out.println("Ingrese el nombre:");
+                String nombreBuscart = scan.nextLine();
+                System.out.println("Ingrese el apellido:");
+                String apellidoBuscart = scan.nextLine();
+                a.modificarTelefono(nombreBuscart, apellidoBuscart);
+                break;
+            case 8:
+                System.out.println("Ingrese el nombre:");
+                String nombreBuscarCompleto = scan.nextLine();
+                System.out.println("Ingrese el apellido:");
+                String apellidoBuscarCompleto = scan.nextLine();
+                System.out.println("Ingrese el teléfono:");
+                String telefonoBuscarCompleto = scan.nextLine();
+                a.buscarContactoCompleto(nombreBuscarCompleto, apellidoBuscarCompleto, telefonoBuscarCompleto);
+                break;
+                
             default:
                 System.out.println("Se ha finalizado el programa!");
         }

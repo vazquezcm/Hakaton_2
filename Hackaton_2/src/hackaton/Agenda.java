@@ -1,7 +1,6 @@
 package hackaton;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Agenda {
    private Contacto[] contactos;
    private int capacidad;
@@ -70,36 +69,90 @@ public class Agenda {
         }
     }
 
-    public void buscarContacto(String nombre, String apellido) {
+    public boolean agendaVacia(){
+        boolean banderaAgenda = false;
+        if (cantidadActual==0){
+            banderaAgenda = true;
+            return banderaAgenda;
+        } else {
+            return banderaAgenda;
+        }
+    }
+     public void buscarContacto(String nombre, String apellido) {
+        for(Contacto contacto : this.contactos) {
+            if (contacto != null && contacto.getNombre().equalsIgnoreCase(nombre) && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                System.out.println("Contacto encontrado. Teléfono: " + contacto.getTelefono());
+                return;
+            }
+        }
+
+        System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
+    }
+
+    public boolean validarDuplicado(String nombre, String apellido) {
+        boolean duplicado = false;
         for (Contacto contacto : contactos) {
             if (contacto != null) {
+                // Check if all three variables match (case-insensitive)
                 if (contacto.getNombre().equalsIgnoreCase(nombre)
                         && contacto.getApellido().equalsIgnoreCase(apellido)) {
-                    System.out.println("Contacto encontrado. Teléfono: " + contacto.getTelefono());
+                    System.out.println("Contacto duplicado! intente de nuevo. " + contacto);
+                    duplicado = true;
+                    return duplicado;
+                }
+            }
+        }
+        //System.out.println("Contacto '" + nombre + " " + apellido + " " + "' Agregado.");
+        return duplicado;
+    }
+
+
+    public void buscarContactoCompleto(String nombre, String apellido, String telefono) {
+        for (Contacto contacto : contactos) {
+            if (contacto != null) {
+                // Check if all three variables match (case-insensitive)
+                if (contacto.getNombre().equalsIgnoreCase(nombre)
+                        && contacto.getApellido().equalsIgnoreCase(apellido)
+                        && contacto.getTelefono().equalsIgnoreCase(telefono)) {
+                    System.out.println("Contacto encontrado: " + contacto);
                     return;
                 }
             }
         }
-        System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
+        System.out.println("Contacto '" + nombre + " " + apellido + " " + telefono + "' no encontrado.");
     }
 
+    public void eliminarContacto(String nombre, String apellido) {
+        for (int i = 0; i < cantidadActual; i++) {
+            if(contactos[i].getNombre().equals(nombre) && contactos[i].getApellido().equals(apellido)){
+                for (int j = i; j < cantidadActual - 1; j++) {
+                    contactos[j] = contactos[j + 1];
+                }
+                contactos[cantidadActual - 1] = null;
+                cantidadActual--;
+                System.out.println("Se elimino a " + nombre +" "+ apellido);
+                return;
+            }
 
-    public void eliminarContacto() {
+        }
+        System.out.println("No se encontro contacto");
+    }
 
-        System.out.println("\n- LISTA DE CONTACTOS -");
-        int contador = 1;
+    public void modificarTelefono(String nombre, String apellido){
+        Scanner scan = new Scanner(System.in);
+        String telefonoNew;
         for (Contacto contacto : contactos) {
             if (contacto != null) {
-                System.out.println(contador++ + ". " + contacto);
+                if (contacto.getNombre().equalsIgnoreCase(nombre)
+                        && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                    System.out.println("Va a cambiar el telefono del siguiente contacto = " + contacto.getNombre() + " "+contacto.getApellido());
+                    System.out.println("¿Cuál va a ser su nuevo número telefónico?");
+                    telefonoNew = scan.nextLine();
+                    contacto.setTelefono(telefonoNew);
+                    return;
+                }
             }
         }
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\nIngrese el número del contacto a eliminar: ");
-        int opcion = scanner.nextInt();
-
     }
-
-
 
 }
