@@ -81,5 +81,20 @@ public class Agenda {
         System.out.println("Contacto '" + nombre + " " + apellido + "' no encontrado.");
     }
 
+    public void eliminarContacto(String nombre, String apellido) {
+        for (int i = 0; i < cantidadActual; i++) {
+            if(contactos[i].getNombre().equals(nombre) && contactos[i].getApellido().equals(apellido)){
+                for (int j = i; j < cantidadActual - 1; j++) {
+                    contactos[j] = contactos[j + 1];
+                }
+                contactos[cantidadActual - 1] = null;
+                cantidadActual--;
+                System.out.println("Se elimino a " + nombre +" "+ apellido);
+                return;
+            }
+
+        }
+        System.out.println("No se encontro contacto");
+    }
 
 }
