@@ -35,4 +35,9 @@ public class Contacto {
         this.telefono = telefono;
     }
 
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + ", Apellido: " + apellido + ", Teléfono: " + telefono;
+    }
+
 }

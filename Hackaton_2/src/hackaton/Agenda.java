@@ -27,6 +27,8 @@ public class Agenda {
         return contactos;
     }
 
+
+
     public void setContactos(Contacto[] contactos) {
         this.contactos = contactos;
     }
@@ -106,7 +108,7 @@ public class Agenda {
                 // Compara nombre y apellido (ignorando mayúsculas/minúsculas)
                 if (contacto.getNombre().equalsIgnoreCase(nombre)
                         && contacto.getApellido().equalsIgnoreCase(apellido)) {
-                    System.out.println("Contacto duplicado! intente de nuevo. " + contacto);
+                    System.out.println("Contacto duplicado! " + contacto);
                     duplicado = true;
                     return duplicado;
                 }
@@ -158,9 +160,18 @@ public class Agenda {
                         && contacto.getApellido().equalsIgnoreCase(apellido)) {
                     System.out.println("Va a cambiar el telefono del siguiente contacto = "
                             + contacto.getNombre() + " "+contacto.getApellido());
-                    System.out.println("¿Cuál va a ser su nuevo número telefónico?");
-                    telefonoNew = scan.nextLine();  // Solicita el nuevo teléfono
+
+                        System.out.println("¿Cuál va a ser su nuevo número telefónico?");
+                    do {
+                        telefonoNew = scan.nextLine();
+                        if (telefonoNew.contains(" ")) {
+                            System.out.println("El teléfono no debe contener espacios. Inténtalo de nuevo.");
+                        } else if (!telefonoNew.matches("\\d+")) {
+                            System.out.println("El teléfono debe contener solo números. Inténtalo de nuevo.");
+                        }
+                    } while (telefonoNew.contains(" ") || !telefonoNew.matches("\\d+"));
                     contacto.setTelefono(telefonoNew);  // Actualiza el teléfono
+                    System.out.println("Teléfono cambiado exitosamente! ");
                     return;
                 }
             }
