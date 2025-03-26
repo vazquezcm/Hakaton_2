@@ -258,7 +258,7 @@ public class Main {
                     break;
                 case 9: // Generar HTML con la agenda
                     try {
-                        Contacto[] contactos = a.getContactos(); // Asegúrate de tener este método en tu clase Agenda
+                        Contacto[] contactos = a.getContactos();
                         StringBuilder html = new StringBuilder();
                         html.append("<!DOCTYPE html>\n");
                         html.append("<html lang='es'>\n<head>\n<meta charset='UTF-8'>\n<title>Agenda de Contactos</title>\n");
